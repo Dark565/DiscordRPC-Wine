@@ -22,7 +22,7 @@ WARNING! If a program which linked the library in compile time will surprise you
 	- Add override of this library by passing its file name **without** '.dll' suffix,
 	- Click 'edit' and choose 'builtin'
 2. Copy `discord-rpc.dll.so` to directory of program using that RPC
-3. Done. You may test running some DiscordRPC Windows programs. Enjoy!
+3. Done. You may test running some discord-rpc Windows programs. Enjoy!
 
 
 Original author of discord-rpc is Discord

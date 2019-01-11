@@ -32,9 +32,9 @@ help() {
 	
 echo "\
 Usage: $(basename $0) [option]
--build 			Build the library; default option
--clean			Clean build data
--threads-off		Build the library without IO threads feature
+-build [directory]		Build the library; default option
+-clean				Clean build data
+-threads-off [directory]	Build the library without IO threads feature
 "
 
 }
@@ -57,6 +57,7 @@ then
 			help
 			exit 0
 	esac
+	[[ ! -z $2 ]] && cd "$2"
 fi
 
 if [[ ! -d $CC_SOURCE ]]
