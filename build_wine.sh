@@ -13,7 +13,7 @@
 
 # Linker settings
 [[ -z $LD_FLAGS ]]	&& LD_FLAGS="-shared"
-[[ -z $LD_LIBS ]]	&& LD_LIBS="-lpthread"
+#[[ -z $LD_LIBS ]]	&& LD_LIBS="-lpthread"
 LD_SPEC_DEF="build_wine.spec"
 # Output settings
 [[ -z $OUTPUT ]]	&& OUTPUT="discord-rpc.dll"
@@ -59,6 +59,8 @@ then
 	esac
 	[[ ! -z $2 ]] && cd "$2"
 fi
+
+[[ -z $THREADS_OFF ]] && LD_FLAGS="${LD_FLAGS} -lpthread"
 
 if [[ ! -d $CC_SOURCE ]]
 then
