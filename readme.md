@@ -12,7 +12,7 @@ git submodule update
 
 # Building
 
-To build this library, simply write `./build-wine`, but before it, give this script execution permission, if your user leaks it having 644 (rw r r) file mask as default for example.  
+To build this library, simply write `./build-wine [directory]`, but before it, give this script execution permission, if your user leaks it having 644 (rw r r) file mask as default for example.  
 WARNING! If a program which linked the library in compile time will surprise you with an error of type: `Procedure 'Discord_UpdateConnection' not found`, run the command with following argument: '-threads-off'  
 
 # Installing
