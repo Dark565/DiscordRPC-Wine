@@ -31,16 +31,18 @@ fi
 help() {
 	
 echo "\
-Usage: $(basename $0) [option]
+Usage: $(basename $0) [option][directory]
 -build [directory]		Build the library; default option
--clean				Clean build data
+-clean [directory]		Clean build data
 -threads-off [directory]	Build the library without IO threads feature
+-help, --help, -h		Print this help
 "
 
 }
 
 # Argument checking
 if [[ ! -z $1 ]]
+DIR_ARGNO=2
 then
 	case "$1" in
 		"-build")
@@ -50,14 +52,21 @@ then
 			CC_FLAGS="${CC_FLAGS} -DDISCORD_DISABLE_IO_THREAD"
 			;;
 		"-clean")
-			rm -rf "build" "${LD_SPEC_DEF}"
+			CLEAN=1
+			;;
+		"-help" | "--help" | "-h")
+			help
 			exit 0
 			;;
 		*)
-			help
-			exit 0
+			DIR_ARGNO=1
 	esac
-	[[ ! -z $2 ]] && cd "$2"
+	[[ ! -z ${!DIR_ARGNO} ]] && cd "${!DIR_ARGNO}"
+	if [[ ! -z ${CLEAN} ]]
+	then
+		rm -rf "${CC_BUILD}" "${LD_SPEC_DEF}"
+		exit 0
+	fi
 fi
 
 [[ -z $THREADS_OFF ]] && LD_FLAGS="${LD_FLAGS} -lpthread"
